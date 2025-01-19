@@ -1,0 +1,72 @@
+body{
+    height: 100%;
+    width: 100%;
+}
+
+.d-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mx-10 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.mx-10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.py-5 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.px-5 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.px-10 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.py-10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+nav div {
+    cursor: pointer;
+    padding: 8px;
+}
+
+nav {
+    background-color: black;
+    color: white;
+    padding: 8px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    margin: 20px auto;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
