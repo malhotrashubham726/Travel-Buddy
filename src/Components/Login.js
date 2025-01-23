@@ -12,7 +12,7 @@ export default function Login() {
   })
 
   const loginBtn = async() => {
-    const loginUser=await fetch('http://localhost:3000/cred/login', {
+    const loginUser=await fetch('http://localhost:5000/cred/login', {
       method: "POST",
       headers: {
         "Content-type": "application/json"

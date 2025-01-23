@@ -57,7 +57,7 @@ router.post('/login', [
         }
 
         else {
-            const existUser=await user.findOne({email:req.body.email});
+            const existUser=await user.findOne({email: req.body.email});
             if(!existUser) {
                 return res.status(404).json({error: "User not exists"});
             }

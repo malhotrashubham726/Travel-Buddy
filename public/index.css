@@ -44,14 +44,14 @@ nav div {
 }
 
 nav {
-    background-color: black;
-    color: white;
+    background-color: rgb(255, 141, 47);
+    color: black;
     padding: 8px;
 }
 
 nav a {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 .flex-col {
@@ -69,4 +69,20 @@ nav a {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.nav-image {
+    background-color: white;
+}
+
+.nav-image img {
+    width: 300px;
+    height: 100px;
+}
+
+@media screen and (max-width: 380px) {
+    .nav-image img {
+        width: 170px;
+        height: 100px;
+    }
 }
