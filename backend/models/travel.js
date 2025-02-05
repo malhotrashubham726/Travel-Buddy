@@ -15,12 +15,12 @@ const travelSchema=new Schema({
         required: true
     },
     noOfMembers: {
-        type: "Integer",
+        type: "String",
         required: true
     },
     date: {
         type: "String",
-        required: true
+        // required: true
     }
 })
 

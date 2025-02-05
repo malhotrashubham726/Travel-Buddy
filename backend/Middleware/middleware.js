@@ -9,7 +9,7 @@ const midWare=async(req, res, next) => {
     }
 
     else {
-        const data=jwt.verify('token', jwtSecret);
+        const data=jwt.verify(token, jwtSecret);
         req.id=data.id;
         next();
     }

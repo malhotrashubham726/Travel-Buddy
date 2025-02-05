@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/cred', require('./routes/Cred'));
+app.use('/travel', require('./routes/Travel'));
 
 app.listen(port, () => {
     console.log(`Server is listening at port ${port}`);

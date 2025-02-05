@@ -20,7 +20,7 @@ router.post('/signup', [
         else {
             const existUser=await user.findOne({email: req.body.email});
             if(existUser) {
-                return res.status(500).json({error: "User already exists"});
+                return res.status(500).json({message: "User already exists"});
             }
             else {
                 const salt=await bcrypt.genSalt(10);
@@ -37,7 +37,7 @@ router.post('/signup', [
                 }
 
                 const token=jwt.sign(userId, jwtSecret);
-                return res.status(200).json({authtoken: token});
+                return res.status(200).json({message: "Account created successfully", authtoken: token});
             }
         }
     }
@@ -59,12 +59,12 @@ router.post('/login', [
         else {
             const existUser=await user.findOne({email: req.body.email});
             if(!existUser) {
-                return res.status(404).json({error: "User not exists"});
+                return res.status(404).json({message: "User not exists"});
             }
             else {
                 const pwdCheck=bcrypt.compare(existUser.password, req.body.password);
                 if(!pwdCheck) {
-                    return res.status(500).send("Invalid email or password")
+                    return res.status(500).json({message: "Invalid email or password"})
                 }
 
                 else {
@@ -73,7 +73,7 @@ router.post('/login', [
                     }
 
                     const token=jwt.sign(userId, jwtSecret);
-                    return res.status(200).json({authtoken: token});
+                    return res.status(200).json({message: "Login Successful", authtoken: token});
                 }
             }
         }

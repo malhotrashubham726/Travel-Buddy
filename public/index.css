@@ -58,6 +58,26 @@ nav a {
     flex-direction: column;
 }
 
+.flex-gap-20 {
+    gap: 20px;
+}
+
+.align-items-start{
+    align-items: start;
+}
+
+.padding-sm{
+    padding: 10px;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.flex-gap-10{
+    gap: 10px;
+}
+
 .form-container {
     display: flex;
     flex-direction: column;
@@ -71,6 +91,14 @@ nav a {
     align-items: center;
 }
 
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
 .nav-image {
     background-color: white;
 }
@@ -78,6 +106,38 @@ nav a {
 .nav-image img {
     width: 300px;
     height: 100px;
+}
+
+.home-img {
+    height: auto;
+}
+
+.home-img img {
+    width: 330px;
+    height: 75vh;
+}
+
+ul li{
+    list-style-type: disc;
+}
+
+.d-grid {
+    display: grid;
+}
+
+.grid-gap-10 {
+    grid-gap: 10px;
+}
+
+.grid-col-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.frames{
+    border: 2px solid black;
+    position: relative;
+    /* height: 10vh; */
+    /* overflow: hidden; */
 }
 
 @media screen and (max-width: 380px) {
