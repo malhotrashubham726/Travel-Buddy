@@ -135,9 +135,26 @@ ul li{
 
 .frames{
     border: 2px solid black;
-    position: relative;
-    /* height: 10vh; */
-    /* overflow: hidden; */
+    position: relative
+}
+
+.modal{
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+    background-color: white;
+    z-index: 10;
+    border-radius: 8px;
+    border: 2px solid black;
+    width: 83vw;
+    max-width: 400px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    padding: 10px;
 }
 
 @media screen and (max-width: 380px) {

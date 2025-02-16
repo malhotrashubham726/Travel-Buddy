@@ -56,10 +56,41 @@ export default function BookState(props) {
 
         setBookings(delFront);
     }
+
+    const editBooking=async(id, from, to, noOfMembers) => {
+        console.log(id, from, to, noOfMembers);
+        const editURL=await fetch(`http://localhost:5000/travel/edit/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-type": "application/json",
+                "authtoken": localStorage.getItem('authtoken')
+            },
+            body: await JSON.stringify({
+                from: from,
+                to: to,
+                noOfMembers: noOfMembers
+            })
+        })
+
+        const json=await editURL.json();
+        console.log(json.booking);
+
+        const filterBook=await bookings.map((value) => {
+            if(value._id===id) {
+                value.from=from;
+                value.to=to;
+                value.noOfMembers=noOfMembers;
+                console.log("Entered into if block")
+            }
+            return value;
+        })
+
+        setBookings(filterBook);
+    }
     
   return (
     <div>
-      <bookContext.Provider value={{error, bookings, setError, setBookings, addBooking, getBooking, delBooking}}>{props.children}</bookContext.Provider>
+      <bookContext.Provider value={{error, bookings, setError, setBookings, addBooking, getBooking, delBooking, editBooking}}>{props.children}</bookContext.Provider>
     </div>
   )
 }

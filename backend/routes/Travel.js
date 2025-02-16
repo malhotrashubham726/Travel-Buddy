@@ -79,30 +79,30 @@ router.put('/edit/:id', [
         }
 
         else {
-
-        }
-        const rec=await travel.findById(req.params.id);
-        if(!rec) {
-            return res.status(404).json({error: "Record not found"});
-        }
-        else {
-            if(rec.user.toString()===req.id) {
-                const updateDet=[];
-                if(req.body.from) {
-                    updateDet.from=req.body.from;
-                }
-
-                if(req.body.to) {
-                    updateDet.to=req.body.to;
-                }
-
-                if(req.body.noOfMembers) {
-                    updateDet.noOfMembers=req.body.noOfMembers;
-                }
-
-                rec.findByIdAndUpdate(req.params.id, {$set: })
+            const rec=await travel.findById(req.params.id);
+            if(!rec) {
+                return res.status(404).json({error: "Record not found"});
             }
-        }
+            else {
+                if(rec.user.toString()===req.id) {
+                    const updateDet={};
+                    if(req.body.from) {
+                        updateDet.from=req.body.from;
+                    }
+
+                    if(req.body.to) {
+                        updateDet.to=req.body.to;
+                    }
+
+                    if(req.body.noOfMembers) {
+                        updateDet.noOfMembers=req.body.noOfMembers;
+                    }
+
+                    await travel.findByIdAndUpdate(req.params.id, {$set: updateDet});
+                    return res.status(200).json({success: "Booking edited successfully", booking: updateDet});
+                }
+            }
+        } 
     }
     catch(error) {
         return res.status(500).send("Some error occured");
