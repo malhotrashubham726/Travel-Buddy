@@ -1,16 +1,16 @@
 const express=require('express');
 const app=express();
 const port=5000;
-const mongoFunc=require('./db');
+const db=require('./db1');
 const cors=require('cors');
 
-mongoFunc(); 
-app.use(express.json());
+db();
+
 app.use(cors());
+app.use(express.json());
+app.use('/cred1', require('./routes/Cred1'));
+app.use('/book', require('./routes/Travel1'));
 
-app.use('/cred', require('./routes/Cred'));
-app.use('/travel', require('./routes/Travel'));
-
-app.listen(port, () => {
-    console.log(`Server is listening at port ${port}`);
+app.listen(port, ()=> {
+    console.log(`App is listening at port ${port}`);
 })

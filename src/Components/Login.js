@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react'
 import bookContext from '../Context/BookContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  let history=useNavigate();
   const { setError }=useContext(bookContext);
 
   const[credentials, setCredentials]=useState({
@@ -32,6 +34,7 @@ export default function Login() {
     }
 
     else {
+      console.log(credentials.email, credentials.password);
       const loginUser=await fetch('http://localhost:5000/cred/login', {
         method: "POST",
         headers: {
@@ -41,15 +44,19 @@ export default function Login() {
       })
   
       const json=await loginUser.json();
-      // console.log(json);
+    
+      if(json.error) {
+        setError(json.error);
+      }
 
-      localStorage.setItem('authtoken', json.authtoken);
-      setError(json.message);
-      // setToken(json.authtoken);
-      setCredentials({email: "", password: ""});
+      else {
+        localStorage.setItem('authtoken', json.authtoken);
+        setError(json.message);
+        setCredentials({email: "", password: ""});
+        history('/ride');
+      }
     }
   }
-    
 
   return (
     <div className='form-container'>

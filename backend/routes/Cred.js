@@ -13,14 +13,14 @@ router.post('/signup', [
 ], async(req, res) => {
     try {
         const validate=await validationResult(req);
-        if(!validate) {
-            return res.status(500).send("Validations failed");
+        if(!validate.isEmpty()) {
+            return res.status(500).json({error: "Validations failed"});
         }
 
         else {
             const existUser=await user.findOne({email: req.body.email});
             if(existUser) {
-                return res.status(500).json({message: "User already exists"});
+                return res.status(500).json({error: "User already exists"});
             }
             else {
                 const salt=await bcrypt.genSalt(10);
@@ -53,18 +53,21 @@ router.post('/login', [
     try {
         const validate=await validationResult(req);
         if(!validate) {
-            return res.status(500).send("Validation failed");
+            return res.status(500).json({error: "Validation failed"});
         }
 
         else {
             const existUser=await user.findOne({email: req.body.email});
             if(!existUser) {
-                return res.status(404).json({message: "User not exists"});
+                return res.status(404).json({error: "User not exists"});
             }
             else {
-                const pwdCheck=bcrypt.compare(existUser.password, req.body.password);
+                const pwdCheck=await bcrypt.compare(req.body.password, existUser.password);
+                console.log(pwdCheck);
+                console.log(req.body.password);
+                console.log(existUser.password);
                 if(!pwdCheck) {
-                    return res.status(500).json({message: "Invalid email or password"})
+                    return res.status(500).json({error: "Invalid email or password"})
                 }
 
                 else {

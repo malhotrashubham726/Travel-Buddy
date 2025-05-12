@@ -1,0 +1,32 @@
+body{
+    height: 100%;
+    width: 100%;
+}
+
+.d-flex {
+    display: flex;
+    gap: 10px;
+}
+
+.flex-col{
+    flex-direction: column;
+}
+
+.justify-content{
+    justify-content: space-between;
+}
+
+.link-tag{
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.nav-image {
+    height: 20vh;
+    width: 20vw;
+}
+
+input[type="button"] {
+    cursor: pointer;
+}

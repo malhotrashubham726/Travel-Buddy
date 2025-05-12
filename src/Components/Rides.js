@@ -1,10 +1,28 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Bookings from './Bookings'
 import bookContext from '../Context/BookContext'
+import { useNavigate } from 'react-router-dom';
 
 export default function Rides() {
   const { bookings, getBooking, addBooking, setError }=useContext(bookContext);
   console.log(bookings);
+
+  const history=useNavigate();
+
+  useEffect(() => {
+    const token=localStorage.getItem('authtoken');
+    if(token) {
+      history('/ride');
+      console.log("TOken exists");
+      getBooking();
+    }
+
+    else {
+      history('/login');
+      console.log("Token notxists");
+    }
+    //eslint-disable-next-line
+  }, [])
 
   const [book, setBook] = useState({
     from: "",
@@ -28,10 +46,10 @@ export default function Rides() {
     setBook({...book, [e.target.name]: e.target.value});
   })
 
-  useEffect(() => {
-    getBooking();
-    //eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   getBooking();
+  //   //eslint-disable-next-line
+  // }, []);
 
   const isDisabled=book.from.length<3 || book.to.length<3 || book.noOfMembers.length<1;
 

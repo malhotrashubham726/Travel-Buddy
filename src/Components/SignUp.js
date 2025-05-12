@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import bookContext from '../Context/BookContext';
 
 export default function SignUp(props) {
-    const { setError, setToken }=useContext(bookContext);
+    const { setError }=useContext(bookContext);
     // const {setError}=props;
 
     const[credentials, setCredentials] = useState({
@@ -45,11 +45,18 @@ export default function SignUp(props) {
                 },
                 body: JSON.stringify({name: credentials.name, email: credentials.email, password: credentials.password})
             })
-            const resp=await signIn.json()
+            const resp=await signIn.json();
             console.log(resp);
-            setError(resp.message);
-            setToken(resp.authtoken);
-            setCredentials({name: "", email: "", password: ""});
+
+            if(resp.error) {
+                setError(resp.error);
+            }
+
+            else {
+                setError(resp.message);
+                localStorage.setItem('authtoken', resp.authtoken);
+                setCredentials({name: "", email: "", password: ""});
+            }
         }
     }
 
